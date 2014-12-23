@@ -63,7 +63,7 @@ var SettingsSave = {
             return false;
         }
     },
-    saveInputSettings: function(settings, saveName) {
+    saveInputSettings: function(saveName, settings) {
         //TODO this check should probably be done by the frontend.
         if (!this.supportsLocalStorage()) {
             alert("Your web browser doesn't support saving.");
