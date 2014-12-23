@@ -54,6 +54,41 @@ function cumulativeInflation(startCPI, endCPI) {
     return 1+((endCPI-startCPI)/startCPI)
 }
 
+
+var SettingsSave = {
+    supportsLocalStorage: function() {
+        try {
+            return 'localStorage' in window && window['localStorage'] !== null;
+        } catch (e) {
+            return false;
+        }
+    },
+    saveInputSettings: function(settings, saveName) {
+        //TODO this check should probably be done by the frontend.
+        if (!this.supportsLocalStorage()) {
+            alert("Your web browser doesn't support saving.");
+        } else {
+            localStorage[saveName] = JSON.stringify(settings);
+        }
+    },
+    loadInputSetting: function(saveName) {
+        //TODO this check should probably be done by the frontend.
+        if (!this.supportsLocalStorage()) {
+            alert("Your web browser doesn't support saving.");
+        } else {
+            return JSON.parse(localStorage[saveName]);
+        }
+    },
+    listSaveNames: function() {
+        var saves = []
+        for (var item in localStorage) {
+            saves.push(item);
+        }
+        return saves;
+    },
+    clear: function() {localStorage.clear();}
+}
+
 function doWork(){ //Placeholder
 
 };
